@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/donate.css">
+    <link rel="stylesheet" href="fonts/fonts.css">
+    <title>RDS - Проект в GTA SA-MP</title>
+</head>
+<body id="main">
+    <div class="container">
+    <div class="container_c" id="bg">
+        <div class="main">
+            <header class="nav">
+                <img src="img/logo.svg" alt="">
+                <div class="menu">
+                        <ul>
+                            <li class="menu__item"><a href="">Mtavari</a></li>
+                            <li class="menu__item"><a href="https://www.instagram.com/gamecentercontroller/">Instagram</a></li>
+                            <li class="menu__item"><a href="https://www.facebook.com/Gaming.club.controller">Facebook</a></li>
+                            <li class="menu__item active"><a href="donate.html">MUSHAVDEBA!!</a></li>
+                        </ul>
+                </div>
+            </header>
+            <div class="main__text">Время апдейта! <br><span>Легальное преимущество</span> в пару кликов</div>
+            <div class="minor__text">ЕСЛИ НЕ ХОЧЕШЬ ЖДАТЬ, ТРЕБУЕТСЯ <br>БЫСТРОЕ УЛУЧШЕНИЕ СВОЕГО ИМУЩЕСТВА <br>– ОБМЕНЯЙ РЕАЛЬНЫЕ ДЕНЬГИ НА ИГРОВУЮ ВАЛЮТУ</div>
+            <div class="form">
+                <form action="handler.php" method="GET">
+                    <input type="text" id="nick" class="form__control form-a" placeholder="Mathew" name="nick" required="" onchange='hideNickError()'>
+                    <p class="note" id="error_nick">Укажите свой никнейм</p>
+                    <div class="money">
+                        <div class="w5">
+                            <div class="wrapping">
+                                <input type="text" class="form__control form-b" id="money_input" placeholder="100" onchange='checkMoney(this.value)' name="sum" required="">
+                                <div class="currency currency__input">₽</div>
+                            </div>
+                        <p class="note" id="error_money">Укажите желаемую сумму</p>
+                        </div>
+                        <div class="w5">
+                            <div class="wrapping">
+                                <div class="output__money" id="money">200</div>
+                                <div class="currency currency__output">DNT</div>
+                            </div>  
+                            <p class="note" style="color:#27AE60;">Столько вы получите в игре</p>
+                        </div>
+                    </div>
+                    <div class="radio_button">
+                        <div class="form__server">
+                            <input type="radio" name="radio" value="server1" id="radio1" required="">
+                            <label for="radio1" onclick='hideRadioError()'>RDS1</label>
+                        </div>
+                        <div class="form__server">
+                            <input type="radio" name="radio" value="server2" id="radio2">
+                            <label for="radio2" onclick='hideRadioError()'>RDS2</label>
+                        </div>
+                        <div class="form__server">
+                            <input type="radio" name="radio" value="server3" id="radio3">
+                            <label for="radio3" onclick='hideRadioError()'>RDS3</label>
+                        </div>
+                        <div class="form__server">
+                            <input type="radio" name="radio" value="server4" id="radio4">
+                            <label for="radio4" onclick='hideRadioError()'>RDS4</label>
+                        </div>
+                        <div class="form__server">
+                            <input type="radio" name="radio" value="server5" id="radio5">
+                            <label for="radio5" onclick='hideRadioError()'>RDS5</label>
+                        </div>
+                    </div>
+                    <p class="note" id="error_radio"> &#160;</p>
+                    <div class="form__button">
+                    <div class="info" onclick='openModal()'>Информация о донате</div>
+                    <button type="button" class="form__convert" id="submit_button" onclick='check()'>Конвертировать</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="modal_window" id="modal">
+        <div class="cross">
+            <svg class="modal__cross" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" onclick='closeModal()'>
+                <path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"></path>
+            </svg>
+        </div>
+        <p>ЛЮБАЯ СУММА УВЕЛИЧИВАЕТСЯ НА x2!</p>
+        <p>При пополнении на 500 рублей - ПОЛУЧАЕТЕ - 1000 РУБЛЕЙ </p>
+        <br>
+        <p>Вы не знаете, на каком сервере играете? Проверьте IP адрес сервера!</p>
+        <p>none</p>
+        <p>none&#160; </p>
+        <br>
+        <p class="modal__note">*Также Вы можете пополнить счёт напрямую через основателя, ссылка на его ВК: <a href="https://vk.com/empirerosso">vk.com/empirerosso.</a></p>
+        <p class="modal__note">*После пополнения введите в игре /сheckdon и деньги поступят на ваш счёт! </p>
+        
+    </div>
+    <div class="overlay " id="overlay"></div>
+    <script>
+        var radio_checked = false;
+        var nick_field = false;
+        var money_field = false;
+        function hideRadioError()
+        {
+            error_radio.innerHTML = "&#160;";
+        }
+        function hideNickError()
+        {
+            error_nick.innerHTML = "Укажите свой никнейм";
+            error_nick.style.color = "rgba(255, 255, 255, 0.5)";
+        }
+        function checkMoney(inp) {
+            if (!isNaN(inp)) {
+                if (inp > 0) {
+                    money.innerHTML = inp * 2;
+                    submit_button.disabled = false;
+                    error_money.innerHTML = "Укажите желаемую сумму";
+                    error_money.style.color = "rgba(255, 255, 255, 0.5)";
+                } else {
+                    submit_button.disabled = true;
+                    money.innerHTML = 0;
+                    error_money.innerHTML = "Введите корректное число";
+                    error_money.style.color = "#fa2525";
+                }
+            } else {
+                submit_button.disabled = true;
+                money.innerHTML = 0;
+                error_money.innerHTML = "Введено не число";
+                error_money.style.color ="#ed3434";
+            }
+        }
+
+        function check() {
+            if ($('input[name=radio]:checked').length > 0) {
+                radio_checked = true;
+            } else {
+                error_radio.innerHTML = "Выберите сервер";
+                error_radio.style.color = "#ed3434";
+            }
+            if (document.getElementById("nick").value == '')
+            {
+                nick_field = false;
+                error_nick.innerHTML = "Введите ник";
+                error_nick.style.color = "#ed3434";
+            }
+            else
+            {
+                nick_field = true;
+            }
+           if (document.getElementById("nick").value.includes("."))
+            {
+                nick_field = false;
+                error_nick.innerHTML = "Точку использовать нельзя, обратитесь для пополнения счёта к https://vk.com/empirerosso";
+                error_nick.style.color = "#ed3434";
+            }
+            else
+            {
+                nick_field = true;
+            }
+            if (document.getElementById("money_input").value == '')
+            {
+                money_field = false;
+                error_money.innerHTML = "Введите сумму";
+                error_money.style.color = "#ed3434";
+            }
+            else{
+                 money_field = true;
+            }
+            if(money_field == true && radio_checked == true && nick_field == true)
+            {
+                $('form').submit();
+            }
+        }
+        function openModal() {
+            document.getElementById("modal").classList.add('active_modal');
+            document.getElementById("overlay").classList.add('active_modal');
+
+        }
+
+        function closeModal() {
+            document.getElementById("overlay").classList.remove('active_modal');
+            document.getElementById("modal").classList.remove('active_modal');
+        }
+    </script>
+    <script src="jquery-3.5.1.slim.min.js"></script>
+</body>
+</html>

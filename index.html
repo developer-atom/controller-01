@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="fonts/fonts.css">
+    <title>GAME CENTRE CONTROLLER</title>
+</head>
+    <body id="main">
+    <div class="container">
+        <div class="container_c" id="bg">
+            <div class="main">
+                <header class="nav">
+                    <h1>CONTROLLER</h1>
+                    <div class="menu">
+                        <ul>
+                            <li class="menu__item active"><a href="">Mtavari</a></li>
+                            <li class="menu__item"><a href="https://www.instagram.com/gamecentercontroller/">Instagram</a></li>
+                            <li class="menu__item"><a href="https://www.facebook.com/Gaming.club.controller">Facebook</a></li>
+                        </ul>
+                    </div>
+                </header>
+                <div class="main__text">მოგესალმებით <span> GAME CENTRE CONTROLLER-ის</span> ოფიციალურ საიტზე
+                </div>
+                <div class="button_block">
+                    <div class="button__play">
+                        <div class="play__bg" onmouseover="playHover()" onmouseleave="leave()"><a href="fasebi.html">ფასები</a>
+                        </div>
+                    </div>
+                    <div class="button__voice">
+                        <div class="voice__bg" onmouseover="voiceHover()" onmouseleave="leave()"><a href="gatamashebebi.html">გათამაშებები</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="monitoring">
+                    <div class="container__card" id="first">
+                        <div class="monitoring__card">
+                            <div class="indicator"></div>
+                            <div class="information">
+                                <h2>ფილიალი</h2>
+                                <h1 id="first-text"><span class="online">12am</span>/<span class="maxonline">6pm</span>
+                                </h1>
+                                <p>ღიაა</p>
+                            </div>
+                            <img src="img/1.png" alt="">
+                        </div>
+                        <div class="status"></div>
+                    </div>
+                    <div class="container__card" id="second">
+                        <div class="monitoring__card">
+                            <div class="indicator"></div>
+                            <div class="information">
+                               <h2>ფილიალი</h2>
+                                <h1 id="second-text"><span class="online">12am</span>/<span class="maxonline">6pm</span>
+                                </h1>
+                                <p>ღიაა</p>
+                            </div>
+                            <img src="img/2.png" alt="">
+                        </div>
+                        <div class="status"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function playHover() {
+            main.style.transition = "all 0.3s";
+            main.style.backgroundImage = "url(../img/background-rocket.png)";
+            main.style.backgroundPosition = "bottom left";
+            main.style.backgroundSize = "45%";
+            main.style.backgroundColor = "#9B51E0";
+            main.style.backgroundRepeat = "no-repeat";
+            bg.style.background = "linear-gradient(0deg, rgba(155,81,224,1) 0%, rgba(132,0,255,0) 100%)";
+        }
+
+        function voiceHover() {
+            main.style.transition = "all 0.3s";
+            main.style.backgroundImage = "url(../img/background-smile.png)";
+            main.style.backgroundPosition = "bottom left";
+            main.style.backgroundSize = "45%";
+            main.style.backgroundColor = "#F2994A";
+            main.style.backgroundRepeat = "no-repeat";
+            bg.style.background = "linear-gradient(0deg, rgba(242,153,74,1) 0%, rgba(255,120,0,0) 100%)";
+        }
+
+        function leave() {
+            main.style.backgroundImage = "";
+            main.style.backgroundPosition = "0 0";
+            main.style.backgroundSize = "";
+            main.style.backgroundColor = "#0E0E0E";
+            bg.style.background = "linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 100%)";
+        }
+    </script>
+    <script src="js/monitoring.js"></script>
+</body>
+</html>
